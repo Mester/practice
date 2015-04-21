@@ -14,27 +14,15 @@ public class Easy211 {
 		boolean fbm = "FBM".contains(firstLetter + "");
 
 		sb.append(name + ", " + name);
-		if (!fbm) {
-			sb.append(" bo B");
-		} else {
-			sb.append(" bo-");
-		}
+		sb = !fbm ? sb.append(" bo B") : sb.append(" bo-");
 		sb.append(tail + "\n");
 
 		sb.append("Bonana fanna fo");
-		if (!fbm) {
-			sb.append(" F");
-		} else {
-			sb.append("-");
-		}
+		sb = !fbm ? sb.append(" F") : sb.append("-");
 		sb.append(tail + ",\n");
 
 		sb.append("Fee fy mo");
-		if (!fbm) {
-			sb.append(" M");
-		} else {
-			sb.append("-");
-		}
+		sb = !fbm ? sb.append(" M") : sb.append("-");
 		sb.append(tail + ",\n");
 
 		sb.append(name + "!");
