@@ -1,7 +1,3 @@
-#
-# Makefile to make the file libclientserver.a, containing
-# connection.o and server.o
-#
 # Define the compiler. g++ can be
 # changed to clang++.
 CXX = g++
@@ -26,10 +22,6 @@ PROGS = hard211
 
 all: $(PROGS)
 
-
-
-# Create the library; ranlib is for Darwin (OS X) and maybe other systems.
-# Doesn't seem to do any damage on other systems.
 hard211: hard211.o
 
 # Phony targets
