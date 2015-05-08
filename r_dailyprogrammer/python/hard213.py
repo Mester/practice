@@ -5,20 +5,34 @@ lines = text.readlines()
 text.close()
 #print(lines)
 
-def discrepancy(stepstring):	
-	return abs(stepstring.count('a') - stepstring.count('b'))
+def value(char):
+	if char == 'a':
+		return 1
+	else:
+		return -1
 	
+
 for line in lines:
-	largestDiscrepancy = 0
-	for x in range(len(line)):
-		for y in range(len(line), x, -1):
-			if len(line[x:y]) <= largestDiscrepancy:
-				break
-			for n in range(1, y-x):
-				if len(line[x:y:n]) <= largestDiscrepancy:
-					break
-				newDiscrepancy = discrepancy(line[x:y:n])
-				if largestDiscrepancy < newDiscrepancy:
-					largestDiscrepancy = newDiscrepancy
-					#print(largestDiscrepancy)
-	print(largestDiscrepancy)
+	maxDiscrepancy = 0
+	length = len(line)
+	for step in range(1, length):
+		if length / step < maxDiscrepancy:
+			break
+		
+		for offset in range(0, step):
+			currentPositive = 0
+			currentNegative = 0
+			for i in range(offset, length, step):
+				currentPositive += value(line[i])
+				if currentPositive < 0:
+					currentPositive = max(0, value(line[i]))
+				elif currentPositive > maxDiscrepancy:
+					maxDiscrepancy = currentPositive
+					
+				currentNegative += value(line[i])
+				if currentNegative > 0:
+					currentNegative = max(0, value(line[i]))
+				elif abs(currentNegative) > maxDiscrepancy:
+					maxDiscrepancy = abs(currentNegative)
+				
+	print(maxDiscrepancy)
