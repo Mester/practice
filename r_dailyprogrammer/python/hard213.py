@@ -25,13 +25,13 @@ for line in lines:
 			for i in range(offset, length, step):
 				currentPositive += value(line[i])
 				if currentPositive < 0:
-					currentPositive = max(0, value(line[i]))
+					currentPositive = 0
 				elif currentPositive > maxDiscrepancy:
 					maxDiscrepancy = currentPositive
 					
 				currentNegative += value(line[i])
 				if currentNegative > 0:
-					currentNegative = max(0, value(line[i]))
+					currentNegative = 0
 				elif abs(currentNegative) > maxDiscrepancy:
 					maxDiscrepancy = abs(currentNegative)
 				
