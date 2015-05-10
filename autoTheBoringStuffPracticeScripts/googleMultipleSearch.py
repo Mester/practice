@@ -1,5 +1,5 @@
 #! /usr/bin/python3
-# lucky.py - Opens several Google search results.
+# googleMultipleSearch.py - Opens several Google search results.
 
 import sys, requests, webbrowser, bs4, time
 
@@ -14,10 +14,9 @@ soup = bs4.BeautifulSoup(res.text)
 elems = soup.select(".r a")
 numResults = min(5, len(elems)) #In case of less than 5 results
 
-webbrowser.open('http://google.com' + elems[0].get('href'), new=1)
-
-time.sleep(2) #Wait a bit for browser to open
+webbrowser.open_new("http://google.com")
+time.sleep(3) #Wait a bit for browser to open
 
 # Open the rest of the results in tabs
-for i in range(1, numResults):
+for i in range(0, numResults):
     webbrowser.open_new_tab('http://google.com' + elems[i].get('href'))
