@@ -6,3 +6,5 @@
 *.o
 hard211
 *.ser
+*.in
+intermediate214
