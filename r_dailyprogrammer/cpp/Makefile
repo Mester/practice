@@ -18,11 +18,15 @@ CXXFLAGS += -g
 #LDLIBS = -lclientserver
 
 # Targets
-PROGS = hard211
+PROGS = hard211 intermediate214
 
-all: $(PROGS)
+all: clear $(PROGS)
+	
+clear:
+	clear
 
 hard211: hard211.o
+intermediate214: intermediate214.o
 
 # Phony targets
 .PHONY: all clean
