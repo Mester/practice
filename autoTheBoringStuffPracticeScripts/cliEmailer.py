@@ -21,6 +21,7 @@ browser.get('http://gmail.com')
 emailElem = browser.find_element_by_id('Email')
 emailElem.clear()
 emailElem.send_keys(email)
+emailElem.submit()
 
 # Find the password field and insert the password
 passwordElem = browser.find_element_by_id('Passwd')
