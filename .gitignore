@@ -8,3 +8,5 @@ hard211
 *.ser
 *.in
 intermediate214
+*.sublime*
+a.out
