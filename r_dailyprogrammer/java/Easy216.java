@@ -1,66 +1,11 @@
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
 import java.util.Scanner;
-import java.util.Stack;
 
 public class Easy216 {
-	public static enum Suite {
-		CLUBS, DIAMOND, HEARTS, SPADES
-	}
-
-	public static class Card {
-		private int value;
-		private Suite suite;
-
-		public Card(int suite, int value) {
-			this.suite = Suite.values()[suite];
-			this.value = value;
-		}
-
-		public Card(Suite suite, int value) {
-			this.suite = suite;
-			this.value = value;
-		}
-
-		public String toString() {
-			StringBuilder sb = new StringBuilder();
-			switch (value) {
-			case 11:
-				sb.append("Jack");
-				break;
-			case 12:
-				sb.append("Queen");
-				break;
-			case 13:
-				sb.append("King");
-				break;
-			case 14:
-				sb.append("Ace");
-				break;
-			default:
-				sb.append(value);
-			}
-			sb.append(" of " + suite);
-			return sb.toString();
-		}
-	}
-
-	public static class Player {
-		Stack<Card> hand = new Stack<Card>();
-
-		public void giveCard(Card card) {
-			hand.add(card);
-		}
-
-		public String toString() {
-			return hand.get(0).toString() + ", " + hand.get(1).toString();
-		}
-	}
 
 	public static void main(String[] args) {
 		int nbrOfPlayers = choosePlayers();
-		Stack<Card> deck = generateDeck();
+		Deck deck = new Deck();
 		ArrayList<Player> players = generatePlayers(nbrOfPlayers);
 		dealCardsToPlayers(players, deck);
 		printPlayers(players);
@@ -79,7 +24,7 @@ public class Easy216 {
 		}
 	}
 
-	private static void dealRestOfGame(Stack<Card> deck) {
+	private static void dealRestOfGame(Deck deck) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Card burned: " + deck.pop().toString());
 		sb.append("\n");
@@ -107,21 +52,8 @@ public class Easy216 {
 		return players;
 	}
 
-	private static Stack<Card> generateDeck() {
-		Stack<Card> deck = new Stack<Card>();
-		for (int suite = 0; suite <= 3; suite++) {
-			for (int value = 2; value <= 14; value++) {
-				deck.push(new Card(suite, value));
-			}
-		}
-		for (int i = 0; i < 10; i++) {
-			Collections.shuffle(deck);
-		}
-		return deck;
-	}
-
 	public static void dealCardsToPlayers(ArrayList<Player> players,
-			Stack<Card> deck) {
+			Deck deck) {
 		for (int i = 0; i < 2; i++) {
 			for (Player player : players) {
 				player.giveCard(deck.pop());
@@ -133,7 +65,7 @@ public class Easy216 {
 		Scanner sc = new Scanner(System.in);
 		int players;
 		do {
-			System.out.print("How many players? (2-8)");
+			System.out.print("How many players? (2-8): ");
 			players = sc.nextInt();
 		} while (players < 2 || players > 8);
 		sc.close();
